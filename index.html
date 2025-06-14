@@ -1,20 +1,60 @@
 <!DOCTYPE html>
 <html lang="lv">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Kabanoss Catcher</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Kabanoss Catcher</h1>
-  <div id="game">
-    <div id="player"></div>
+
+  
+  <div id="rulesSection" style="text-align: center; margin-top: 100px;">
+    <h2>Spēles noteikumi</h2>
+    <p>Noķeriet brūnos kabanos! Zaļie brokoļi - zaudē dzīvību, ja tos savācat vai palaidiet garām brūnos!</p>
+    <button id="rulesNextBtn">Turpināt</button>
   </div>
-  <div class="hud">
-    <p>Punkti: <span id="score">0</span></p>
-    <p>Dzīvības: <span id="lives">3</span></p>
-    <button onclick="startGame()">Sākt spēli</button>
+
+ 
+  <div id="nameInputSection" style="display:none; text-align: center; margin-top: 50px;">
+    <label for="playerName">Ievadiet savu vārdu:</label><br />
+    <input type="text" id="playerName" placeholder="Jūsu vārds" />
+    <button id="confirmNameBtn">Labi</button>
   </div>
+
+
+  <div id="gameScreen" style="display:none; text-align: center;">
+    <h1>Kabanoss Catcher</h1>
+    <div id="game">
+      <div id="player"></div>
+    </div>
+
+    <div class="hud">
+      <p>Punkti: <span id="score">0</span></p>
+      <p>Dzīvības: <span id="lives">3</span></p>
+    </div>
+
+    <button id="startGameBtn" style="display:none;">Sākt spēli</button>
+  </div>
+
+ 
+  <div id="gameOverModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h2>Jūs zaudējāt, <span id="finalPlayerName"></span>!</h2>
+      <p>Jūsu rezultāts: <span id="finalScore"></span></p>
+      <button id="restartGameBtn">Sākt no jauna</button>
+      <button id="showLeaderboardBtn">Skatīt tabulu</button>
+    </div>
+  </div>
+
+  
+  <div id="leaderboardModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span id="closeLeaderboard" class="close">&times;</span>
+      <h2>Labāko spēlētāju tabula</h2>
+      <ul id="leaderboardList"></ul>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
