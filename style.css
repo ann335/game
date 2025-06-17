@@ -39,23 +39,26 @@ button:hover {
 }
 
 #game {
-  position: relative; /* для абсолютного позиционирования игрока внутри */
-  width: 400px; /* пример ширины */
-  height: 600px; /* пример высоты */
-  border: 2px solid #333;
+  position: relative;
   margin: 20px auto;
-  background-color: #f0f0f0;
+  background: #fff4ec;
+  border: 3px solid #b92d2d;
+  width: 90%;
+  max-width: 600px;
+  height: 400px;
   overflow: hidden;
+  touch-action: none;
 }
 
 #player {
+  width: 50px;
+  height: 50px;
+  background-color: #b92d2d;
   position: absolute;
-  width: 30px;
-  height: 30px;
-  background-color: brown; /* пример для игрока */
-  bottom: 0; /* игрок у нижнего края */
-  left: 0; /* будет переопределяться JS */
-  border-radius: 5px;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 10px;
 }
 
 .item {
