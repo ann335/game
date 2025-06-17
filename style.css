@@ -51,6 +51,7 @@ button:hover {
 }
 
 #player {
+  position: absolute
   width: 50px;
   height: 50px;
   background-color: #b92d2d;
