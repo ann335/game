@@ -86,7 +86,6 @@ function dropItem() {
   const isKabanos = Math.random() < 0.7;
   item.classList.add('item', isKabanos ? 'kabanos' : 'brokoli');
   item.style.left = `${Math.random() * (game.clientWidth - 30)}px`;
-  item.style.top = '0px';
   game.appendChild(item);
 
   let top = 0;
