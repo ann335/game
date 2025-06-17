@@ -172,6 +172,7 @@ function showLeaderboardModal() {
 
 closeLeaderboardBtn.onclick = () => {
   leaderboardModal.style.display = 'none';
+  startGameBtn.style.display = 'inline-block'; // ✅ добавлено — кнопка появляется
 };
 
 // --- Klaviatūras vadība ---
@@ -194,11 +195,14 @@ document.addEventListener('keyup', (e) => {
 function movePlayer() {
   if (gameStarted) {
     const left = parseInt(player.style.left || '0');
-    if (moveLeft && left > 0) {
-      player.style.left = `${left - 5}px`;
+    const playerWidth = player.clientWidth;
+    const maxLeft = game.clientWidth - playerWidth;
+
+    if (moveLeft) {
+      player.style.left = `${Math.max(0, left - 5)}px`;
     }
-    if (moveRight && left < game.clientWidth - player.clientWidth) {
-      player.style.left = `${left + 5}px`;
+    if (moveRight) {
+      player.style.left = `${Math.min(maxLeft, left + 5)}px`;
     }
   }
   requestAnimationFrame(movePlayer);
