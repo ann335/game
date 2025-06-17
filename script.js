@@ -1,3 +1,4 @@
+// --- UI elementi ---
 const rulesSection = document.getElementById('rulesSection');
 const rulesNextBtn = document.getElementById('rulesNextBtn');
 
@@ -22,7 +23,9 @@ const showLeaderboardBtn = document.getElementById('showLeaderboardBtn');
 const leaderboardModal = document.getElementById('leaderboardModal');
 const closeLeaderboardBtn = document.getElementById('closeLeaderboard');
 const leaderboardList = document.getElementById('leaderboardList');
+const restartFromLeaderboardBtn = document.getElementById('restartFromLeaderboardBtn');
 
+// --- Spēles mainīgie ---
 let playerName = '';
 let score = 0;
 let lives = 3;
@@ -30,6 +33,7 @@ let gameInterval;
 let gameStarted = false;
 let itemsFallIntervals = [];
 
+// --- Pārejas starp sadaļām ---
 rulesNextBtn.onclick = () => {
   rulesSection.style.display = 'none';
   nameInputSection.style.display = 'block';
@@ -52,6 +56,7 @@ startGameBtn.onclick = () => {
   startGame();
 };
 
+// --- Spēles uzsākšana ---
 function startGame() {
   score = 0;
   lives = 3;
@@ -63,17 +68,20 @@ function startGame() {
   gameStarted = true;
 }
 
+// --- Atjaunot punktus un dzīvības ---
 function updateHUD() {
   scoreEl.textContent = score;
   livesEl.textContent = lives;
 }
 
+// --- Noņemt visus priekšmetus ---
 function clearItems() {
   itemsFallIntervals.forEach(i => clearInterval(i));
   itemsFallIntervals = [];
   document.querySelectorAll('.item').forEach(i => i.remove());
 }
 
+// --- Radīt krītošu objektu ---
 function dropItem() {
   const item = document.createElement('div');
   const isKabanos = Math.random() < 0.7;
@@ -117,6 +125,7 @@ function dropItem() {
   itemsFallIntervals.push(fall);
 }
 
+// --- Spēles beigas ---
 function endGame() {
   gameStarted = false;
   clearInterval(gameInterval);
@@ -137,6 +146,12 @@ showLeaderboardBtn.onclick = () => {
   showLeaderboardModal();
 };
 
+restartFromLeaderboardBtn.onclick = () => {
+  leaderboardModal.style.display = 'none';
+  startGameBtn.style.display = 'inline-block';
+};
+
+// --- Saglabāt rezultātus ---
 function saveScore(name, score) {
   let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
   leaderboard.push({ name, score });
@@ -145,81 +160,9 @@ function saveScore(name, score) {
   localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
 }
 
+// --- Rādīt rezultātu sarakstu ---
 function showLeaderboardModal() {
   leaderboardList.innerHTML = '';
   let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
   if (leaderboard.length === 0) {
-    leaderboardList.innerHTML = '<li>Nav ierakstu</li>';
-  } else {
-    leaderboard.forEach((entry, i) => {
-      const li = document.createElement('li');
-      li.textContent = `${i + 1}. ${entry.name} - ${entry.score}`;
-      leaderboardList.appendChild(li);
-    });
-  }
-  leaderboardModal.style.display = 'block';
-}
-
-closeLeaderboardBtn.onclick = () => {
-  leaderboardModal.style.display = 'none';
-  startGameBtn.style.display = 'inline-block'; // ✅ показываем кнопку "Sākt spēli"
-};
-
-// --- Клавиатура ---
-let moveLeft = false;
-let moveRight = false;
-
-document.addEventListener('keydown', (e) => {
-  if (!gameStarted) return;
-  if (e.key === 'ArrowLeft') moveLeft = true;
-  if (e.key === 'ArrowRight') moveRight = true;
-});
-
-document.addEventListener('keyup', (e) => {
-  if (!gameStarted) return;
-  if (e.key === 'ArrowLeft') moveLeft = false;
-  if (e.key === 'ArrowRight') moveRight = false;
-});
-
-function movePlayer() {
-  if (gameStarted) {
-    const left = parseInt(player.style.left || '0');
-    const playerWidth = player.clientWidth;
-    const maxLeft = game.clientWidth - playerWidth;
-
-    if (moveLeft) {
-      player.style.left = `${Math.max(0, left - 5)}px`; // ✅ граница слева
-    }
-    if (moveRight) {
-      player.style.left = `${Math.min(maxLeft, left + 5)}px`; // ✅ граница справа
-    }
-  }
-  requestAnimationFrame(movePlayer);
-}
-movePlayer();
-
-// --- Тач-управление ---
-game.addEventListener('touchstart', (e) => {
-  e.preventDefault();
-  const touchX = e.touches[0].clientX;
-  movePlayerTo(touchX);
-});
-
-game.addEventListener('touchmove', (e) => {
-  e.preventDefault();
-  const touchX = e.touches[0].clientX;
-  movePlayerTo(touchX);
-});
-
-function movePlayerTo(clientX) {
-  const gameRect = game.getBoundingClientRect();
-  let newLeft = clientX - gameRect.left - player.clientWidth / 2;
-
-  // ✅ ограничиваем внутри поля
-  if (newLeft < 0) newLeft = 0;
-  if (newLeft > game.clientWidth - player.clientWidth) {
-    newLeft = game.clientWidth - player.clientWidth;
-  }
-
-  player.style.left = `${newLeft}px`;
-}
+    leaderboardList.inne
