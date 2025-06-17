@@ -1,4 +1,4 @@
-// --- UI elementi ---
+// --- UI элементы ---
 const rulesSection = document.getElementById('rulesSection');
 const rulesNextBtn = document.getElementById('rulesNextBtn');
 
@@ -61,9 +61,13 @@ function startGame() {
   lives = 3;
   updateHUD();
   clearItems();
+
+  // Центрируем игрока в игровом поле с учётом границ
   player.style.left = `${(game.clientWidth - player.clientWidth) / 2}px`;
+
   if (gameInterval) clearInterval(gameInterval);
   gameInterval = setInterval(dropItem, 1000);
+
   gameStarted = true;
 }
 
@@ -190,16 +194,22 @@ document.addEventListener('keyup', (e) => {
   if (e.key === 'ArrowRight') moveRight = false;
 });
 
-// --- Spēlētāja kustība ---
+// --- Spēlētāja kustība ar ierobežojumiem ---
 function movePlayer() {
   if (gameStarted) {
-    const left = parseInt(player.style.left || '0');
-    if (moveLeft && left > 0) {
-      player.style.left = `${left - 5}px`;
+    let left = parseInt(player.style.left) || 0;
+
+    if (moveLeft) {
+      left -= 5;
+      if (left < 0) left = 0; // не выходит за левую границу
     }
-    if (moveRight && left < game.clientWidth - player.clientWidth) {
-      player.style.left = `${left + 5}px`;
+    if (moveRight) {
+      const maxLeft = game.clientWidth - player.clientWidth;
+      left += 5;
+      if (left > maxLeft) left = maxLeft; // не выходит за правую границу
     }
+
+    player.style.left = `${left}px`;
   }
   requestAnimationFrame(movePlayer);
 }
@@ -221,9 +231,10 @@ game.addEventListener('touchmove', (e) => {
 function movePlayerTo(clientX) {
   const gameRect = game.getBoundingClientRect();
   let newLeft = clientX - gameRect.left - player.clientWidth / 2;
+
   if (newLeft < 0) newLeft = 0;
-  if (newLeft > game.clientWidth - player.clientWidth) {
-    newLeft = game.clientWidth - player.clientWidth;
-  }
+  const maxLeft = game.clientWidth - player.clientWidth;
+  if (newLeft > maxLeft) newLeft = maxLeft;
+
   player.style.left = `${newLeft}px`;
 }
