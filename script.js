@@ -1,4 +1,4 @@
-// --- UI элементы ---
+// --- UI elementi ---
 const rulesSection = document.getElementById('rulesSection');
 const rulesNextBtn = document.getElementById('rulesNextBtn');
 
@@ -61,13 +61,9 @@ function startGame() {
   lives = 3;
   updateHUD();
   clearItems();
-
-  // Центрируем игрока в игровом поле с учётом границ
-  player.style.left = `${(game.clientWidth - player.clientWidth) / 2}px`;
-
+  player.style.left = ${(game.clientWidth - player.clientWidth) / 2}px;
   if (gameInterval) clearInterval(gameInterval);
   gameInterval = setInterval(dropItem, 1000);
-
   gameStarted = true;
 }
 
@@ -89,13 +85,13 @@ function dropItem() {
   const item = document.createElement('div');
   const isKabanos = Math.random() < 0.7;
   item.classList.add('item', isKabanos ? 'kabanos' : 'brokoli');
-  item.style.left = `${Math.random() * (game.clientWidth - 30)}px`;
+  item.style.left = ${Math.random() * (game.clientWidth - 30)}px;
   game.appendChild(item);
 
   let top = 0;
   const fall = setInterval(() => {
     top += 5;
-    item.style.top = `${top}px`;
+    item.style.top = ${top}px;
 
     const itemRect = item.getBoundingClientRect();
     const playerRect = player.getBoundingClientRect();
@@ -167,7 +163,7 @@ function showLeaderboardModal() {
   } else {
     leaderboard.forEach((entry, i) => {
       const li = document.createElement('li');
-      li.textContent = `${i + 1}. ${entry.name} - ${entry.score}`;
+      li.textContent = ${i + 1}. ${entry.name} - ${entry.score};
       leaderboardList.appendChild(li);
     });
   }
@@ -194,22 +190,16 @@ document.addEventListener('keyup', (e) => {
   if (e.key === 'ArrowRight') moveRight = false;
 });
 
-// --- Spēlētāja kustība ar ierobežojumiem ---
+// --- Spēlētāja kustība ---
 function movePlayer() {
   if (gameStarted) {
-    let left = parseInt(player.style.left) || 0;
-
-    if (moveLeft) {
-      left -= 5;
-      if (left < 0) left = 0; // не выходит за левую границу
+    const left = parseInt(player.style.left || '0');
+    if (moveLeft && left > 0) {
+      player.style.left = ${left - 5}px;
     }
-    if (moveRight) {
-      const maxLeft = game.clientWidth - player.clientWidth;
-      left += 5;
-      if (left > maxLeft) left = maxLeft; // не выходит за правую границу
+    if (moveRight && left < game.clientWidth - player.clientWidth) {
+      player.style.left = ${left + 5}px;
     }
-
-    player.style.left = `${left}px`;
   }
   requestAnimationFrame(movePlayer);
 }
@@ -231,10 +221,9 @@ game.addEventListener('touchmove', (e) => {
 function movePlayerTo(clientX) {
   const gameRect = game.getBoundingClientRect();
   let newLeft = clientX - gameRect.left - player.clientWidth / 2;
-
   if (newLeft < 0) newLeft = 0;
-  const maxLeft = game.clientWidth - player.clientWidth;
-  if (newLeft > maxLeft) newLeft = maxLeft;
-
-  player.style.left = `${newLeft}px`;
+  if (newLeft > game.clientWidth - player.clientWidth) {
+    newLeft = game.clientWidth - player.clientWidth;
+  }
+  player.style.left = ${newLeft}px;
 }
