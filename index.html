@@ -2,32 +2,28 @@
 <html lang="lv">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kabanoss Catcher</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Sekcija ar spēles noteikumiem -->
   <div id="rulesSection" style="text-align: center; margin-top: 100px;">
-   <h2 style="font-size: 2em;">📜 Spēles noteikumi</h2>
-   <p style="font-size: 1.2em;">
-     🥓 Noķer <strong>brūnos kabanos</strong>!<br />
-     🥦 <strong>Zaļie brokoļi</strong> – ja savāc vai palaid garām <span style="color:red;">➡️ zaudē dzīvību</span>!<br />
-     ❤️ Zaudē dzīvību arī, ja <strong>palaid garām kabanosu</strong>!<br /><br />
-     🎯 Tava misija: iegūt pēc iespējas vairāk punktu!
-   </p>
-   <button id="rulesNextBtn" style="font-size: 1em; padding: 10px 20px; margin-top: 20px;">🚀 Turpināt</button>
+    <h2>📜 Spēles noteikumi</h2>
+    <p>
+      🥓 Noķer brūnos <strong>kabanos</strong>!<br>
+      🥦 Zaļie <strong>brokoļi</strong> – zaudē dzīvību, ja tos savāc!<br>
+      ❌ Ja palaid garām <strong>kabanos</strong> – arī zaudē dzīvību!
+    </p>
+    <button id="rulesNextBtn">Turpināt</button>
   </div>
 
-
-  <!-- Sekcija ar vārda ievadi -->
-  <div id="nameInputSection" class="centered" style="display: none">
-    <label for="playerName">Ievadiet savu vārdu:</label><br />
+  <div id="nameInputSection" style="display:none; text-align: center; margin-top: 50px;">
+    <label for="playerName">👤 Ievadiet savu vārdu:</label><br />
     <input type="text" id="playerName" placeholder="Jūsu vārds" />
     <button id="confirmNameBtn">Labi</button>
   </div>
 
-  <!-- Galvenais spēles logs -->
   <div id="gameScreen" style="display:none; text-align: center;">
     <h1>Kabanoss Catcher</h1>
     <div id="game">
@@ -42,21 +38,19 @@
     <button id="startGameBtn" style="display:none;">Sākt spēli</button>
   </div>
 
-  <!-- Spēles beigu logs -->
   <div id="gameOverModal" class="modal" style="display:none;">
     <div class="modal-content">
-      <h2>Jūs zaudējāt, <span id="finalPlayerName"></span>!</h2>
-      <p>Jūsu rezultāts: <span id="finalScore"></span></p>
-      <button id="restartGameBtn">Sākt no jauna</button>
-      <button id="showLeaderboardBtn">Skatīt tabulu</button>
+      <h2>😢 Jūs zaudējāt, <span id="finalPlayerName"></span>!</h2>
+      <p>🎯 Jūsu rezultāts: <span id="finalScore"></span></p>
+      <button id="restartGameBtn">🔁 Sākt no jauna</button>
+      <button id="showLeaderboardBtn">📊 Skatīt tabulu</button>
     </div>
   </div>
 
-  <!-- Līdzenu tabulas logs -->
   <div id="leaderboardModal" class="modal" style="display:none;">
     <div class="modal-content">
       <span id="closeLeaderboard" class="close">&times;</span>
-      <h2>Labāko spēlētāju tabula</h2>
+      <h2>🏆 Labāko spēlētāju tabula</h2>
       <ul id="leaderboardList"></ul>
     </div>
   </div>
