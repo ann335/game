@@ -1,25 +1,20 @@
-// Ссылки на элементы
+// Элементы
 const rulesSection = document.getElementById('rulesSection');
 const rulesNextBtn = document.getElementById('rulesNextBtn');
-
 const nameInputSection = document.getElementById('nameInputSection');
 const playerNameInput = document.getElementById('playerName');
 const confirmNameBtn = document.getElementById('confirmNameBtn');
-
 const gameScreen = document.getElementById('gameScreen');
 const startGameBtn = document.getElementById('startGameBtn');
-
 const game = document.getElementById('game');
 const player = document.getElementById('player');
 const scoreEl = document.getElementById('score');
 const livesEl = document.getElementById('lives');
-
 const gameOverModal = document.getElementById('gameOverModal');
 const finalPlayerNameSpan = document.getElementById('finalPlayerName');
 const finalScoreSpan = document.getElementById('finalScore');
 const restartGameBtn = document.getElementById('restartGameBtn');
 const showLeaderboardBtn = document.getElementById('showLeaderboardBtn');
-
 const leaderboardModal = document.getElementById('leaderboardModal');
 const closeLeaderboardBtn = document.getElementById('closeLeaderboard');
 const leaderboardList = document.getElementById('leaderboardList');
@@ -31,16 +26,13 @@ let gameInterval;
 let moveLeft = false;
 let moveRight = false;
 let gameStarted = false;
-
 let itemsFallIntervals = [];
 
-// Переход от правил к вводу имени
 rulesNextBtn.onclick = () => {
   rulesSection.style.display = 'none';
   nameInputSection.style.display = 'block';
 };
 
-// Подтверждение имени игрока
 confirmNameBtn.onclick = () => {
   const name = playerNameInput.value.trim();
   if (!name) {
@@ -53,7 +45,6 @@ confirmNameBtn.onclick = () => {
   startGameBtn.style.display = 'inline-block';
 };
 
-// Запуск игры по кнопке
 startGameBtn.onclick = () => {
   startGameBtn.style.display = 'none';
   startGame();
@@ -64,7 +55,7 @@ function startGame() {
   lives = 3;
   updateHUD();
   clearItems();
-  player.style.left = '275px';
+  player.style.left = '45%';
   if (gameInterval) clearInterval(gameInterval);
   gameInterval = setInterval(dropItem, 1000);
   gameStarted = true;
@@ -87,7 +78,7 @@ function dropItem() {
   const isKabanos = Math.random() < 0.7;
   item.classList.add('item');
   item.classList.add(isKabanos ? 'kabanos' : 'brokoli');
-  item.style.left = `${Math.random() * 570}px`;
+  item.style.left = `${Math.random() * 90}%`;
   item.style.top = '0px';
   game.appendChild(item);
 
@@ -118,7 +109,7 @@ function dropItem() {
         }
       }
       updateHUD();
-    } else if (top > 400) {
+    } else if (top > game.clientHeight) {
       if (item.classList.contains('kabanos')) {
         lives--;
         if (lives < 0) lives = 0;
@@ -138,12 +129,12 @@ function dropItem() {
   itemsFallIntervals.push(fall);
 }
 
+// Управление с клавиатуры
 document.addEventListener('keydown', (e) => {
   if (!gameStarted) return;
   if (e.key === 'ArrowLeft') moveLeft = true;
   if (e.key === 'ArrowRight') moveRight = true;
 });
-
 document.addEventListener('keyup', (e) => {
   if (!gameStarted) return;
   if (e.key === 'ArrowLeft') moveLeft = false;
@@ -155,14 +146,34 @@ function movePlayer() {
     requestAnimationFrame(movePlayer);
     return;
   }
-  const left = parseInt(player.style.left);
-  if (moveLeft && left > 0) player.style.left = `${left - 5}px`;
-  if (moveRight && left < 550) player.style.left = `${left + 5}px`;
+  const left = parseFloat(player.style.left || '45');
+  if (moveLeft && left > 0) player.style.left = `${left - 1}%`;
+  if (moveRight && left < 90) player.style.left = `${left + 1}%`;
   requestAnimationFrame(movePlayer);
 }
-
 movePlayer();
 
+// 👉 Сенсорное управление (тач)
+let startX = null;
+game.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+});
+game.addEventListener('touchmove', (e) => {
+  if (!gameStarted || startX === null) return;
+  const currentX = e.touches[0].clientX;
+  const diffX = currentX - startX;
+
+  const currentLeft = parseFloat(player.style.left || '45');
+  const moveAmount = diffX * 0.1; // чувствительность
+
+  let newLeft = currentLeft + moveAmount;
+  newLeft = Math.max(0, Math.min(90, newLeft));
+  player.style.left = `${newLeft}%`;
+
+  startX = currentX;
+});
+
+// Завершение игры
 function endGame() {
   gameStarted = false;
   clearInterval(gameInterval);
@@ -212,13 +223,4 @@ function showLeaderboardModal() {
 
 closeLeaderboardBtn.onclick = () => {
   leaderboardModal.style.display = 'none';
-};
-
-window.onclick = (event) => {
-  if (event.target === leaderboardModal) {
-    leaderboardModal.style.display = 'none';
-  }
-  if (event.target === gameOverModal) {
-    gameOverModal.style.display = 'none';
-  }
 };
