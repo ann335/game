@@ -57,7 +57,6 @@ button:hover {
   position: absolute;
   left: 50px;
   bottom: 10px;
-  transform: translateX(-50%)
   border-radius: 10px;
 }
 
