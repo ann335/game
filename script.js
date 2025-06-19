@@ -33,7 +33,8 @@ restartFromLeaderboardBtn.onclick = () => {
   gameOverModal.style.display = 'none';     // Paslēpj spēles beigu logu (ja redzams)
   gameScreen.style.display = 'block';       // Parāda spēles laukumu
   startGameBtn.style.display = 'none';      // Paslēpj pogu "Sākt spēli", jo spēle sāksies automātiski
-  start
+  startGame();
+}
 
 
 // --- Spēles mainīgie ---
