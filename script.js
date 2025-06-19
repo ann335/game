@@ -24,6 +24,16 @@ const leaderboardModal = document.getElementById('leaderboardModal');
 const closeLeaderboardBtn = document.getElementById('closeLeaderboard');
 const leaderboardList = document.getElementById('leaderboardList');
 
+const restartFromLeaderboardBtn = document.getElementById('restartFromLeaderboardBtn');
+
+restartFromLeaderboardBtn.onclick = () => {
+  leaderboardModal.style.display = 'none';  // Скрыть таблицу рекордов
+  gameOverModal.style.display = 'none';     // Скрыть окно конца игры (если открыто)
+  gameScreen.style.display = 'block';       // Показать игровой экран
+  startGameBtn.style.display = 'none';      // Спрятать кнопку "Sākt spēli" (мы сразу запускаем игру)
+  startGame();                              // Запустить игру
+};
+
 // --- Spēles mainīgie ---
 let playerName = '';
 let score = 0;
