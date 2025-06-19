@@ -55,7 +55,9 @@ button:hover {
   height: 50px;
   background-color: #b92d2d;
   position: absolute;
+  left: 50px;
   bottom: 10px;
+  transform: translateX(-50%)
   border-radius: 10px;
 }
 
