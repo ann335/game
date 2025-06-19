@@ -61,7 +61,7 @@ function startGame() {
   lives = 3;
   updateHUD();
   clearItems();
-  player.style.left = ${(game.clientWidth - player.clientWidth) / 2}px;
+  player.style.left = (game.clientWidth - player.clientWidth) / 2 + 'px';
   if (gameInterval) clearInterval(gameInterval);
   gameInterval = setInterval(dropItem, 1000);
   gameStarted = true;
@@ -85,13 +85,13 @@ function dropItem() {
   const item = document.createElement('div');
   const isKabanos = Math.random() < 0.7;
   item.classList.add('item', isKabanos ? 'kabanos' : 'brokoli');
-  item.style.left = ${Math.random() * (game.clientWidth - 30)}px;
+  item.style.left = Math.random() * (game.clientWidth - 30) + 'px';
   game.appendChild(item);
 
   let top = 0;
   const fall = setInterval(() => {
     top += 5;
-    item.style.top = ${top}px;
+    item.style.top = top + 'px';
 
     const itemRect = item.getBoundingClientRect();
     const playerRect = player.getBoundingClientRect();
@@ -163,7 +163,7 @@ function showLeaderboardModal() {
   } else {
     leaderboard.forEach((entry, i) => {
       const li = document.createElement('li');
-      li.textContent = ${i + 1}. ${entry.name} - ${entry.score};
+      li.textContent = `${i + 1}. ${entry.name} - ${entry.score}`;
       leaderboardList.appendChild(li);
     });
   }
@@ -195,10 +195,10 @@ function movePlayer() {
   if (gameStarted) {
     const left = parseInt(player.style.left || '0');
     if (moveLeft && left > 0) {
-      player.style.left = ${left - 5}px;
+      player.style.left = (left - 5) + 'px';
     }
     if (moveRight && left < game.clientWidth - player.clientWidth) {
-      player.style.left = ${left + 5}px;
+      player.style.left = (left + 5) + 'px';
     }
   }
   requestAnimationFrame(movePlayer);
@@ -225,5 +225,5 @@ function movePlayerTo(clientX) {
   if (newLeft > game.clientWidth - player.clientWidth) {
     newLeft = game.clientWidth - player.clientWidth;
   }
-  player.style.left = ${newLeft}px;
+  player.style.left = newLeft + 'px';
 }
