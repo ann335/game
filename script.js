@@ -29,11 +29,12 @@ const leaderboardList = document.getElementById('leaderboardList');
 const restartFromLeaderboardBtn = document.getElementById('restartFromLeaderboardBtn');
 
 restartFromLeaderboardBtn.onclick = () => {
-  leaderboardModal.style.display = 'none';  // Скрыть таблицу рекордов
-  gameOverModal.style.display = 'none';     // Скрыть окно конца игры (если открыто)
-  gameScreen.style.display = 'block';       // Показать игровой экран
-  startGameBtn.style.display = 'none';      // Спрятать кнопку "Sākt spēli"
-  startGame();                              // Запустить игру
+  leaderboardModal.style.display = 'none';  // Paslēpt līderu sarakstu
+  gameOverModal.style.display = 'none';     // Paslēpt spēles beigu logu (ja tas ir atvērts)
+  gameScreen.style.display = 'block';       // Parādīt spēles ekrānu
+  startGameBtn.style.display = 'none';      // Paslēpt pogu "Sākt spēli"
+  startGame();                              // Sākt spēli
+
 };
 
 
