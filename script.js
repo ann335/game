@@ -1,3 +1,4 @@
+console.log("JS ielādēts!");
 // --- UI elementi ---
 const rulesSection = document.getElementById('rulesSection');
 const rulesNextBtn = document.getElementById('rulesNextBtn');
