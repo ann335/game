@@ -56,9 +56,6 @@ button:hover {
   background-color: #b92d2d;
   position: absolute;
   bottom: 10px;
-  left: 100%;
-  right: 100%;
-  transform: translateX(-50%);
   border-radius: 10px;
 }
 
