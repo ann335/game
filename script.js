@@ -1,4 +1,3 @@
-console.log("JS ielādēts!");
 // --- UI elementi ---
 const rulesSection = document.getElementById('rulesSection');
 const rulesNextBtn = document.getElementById('rulesNextBtn');
@@ -25,18 +24,15 @@ const leaderboardModal = document.getElementById('leaderboardModal');
 const closeLeaderboardBtn = document.getElementById('closeLeaderboard');
 const leaderboardList = document.getElementById('leaderboardList');
 
-// Atrod pogu "Sākt no jauna" pēc tās ID
 const restartFromLeaderboardBtn = document.getElementById('restartFromLeaderboardBtn');
 
 restartFromLeaderboardBtn.onclick = () => {
-  leaderboardModal.style.display = 'none';  // Paslēpt līderu sarakstu
-  gameOverModal.style.display = 'none';     // Paslēpt spēles beigu logu (ja tas ir atvērts)
-  gameScreen.style.display = 'block';       // Parādīt spēles ekrānu
-  startGameBtn.style.display = 'none';      // Paslēpt pogu "Sākt spēli"
-  startGame();                              // Sākt spēli
-
+  leaderboardModal.style.display = 'none';  // Скрыть таблицу рекордов
+  gameOverModal.style.display = 'none';     // Скрыть окно конца игры (если открыто)
+  gameScreen.style.display = 'block';       // Показать игровой экран
+  startGameBtn.style.display = 'none';      // Спрятать кнопку "Sākt spēli" (мы сразу запускаем игру)
+  startGame();                              // Запустить игру
 };
-
 
 // --- Spēles mainīgie ---
 let playerName = '';
