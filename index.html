@@ -7,49 +7,81 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <section id="rulesSection">
-    <h1>📜 Spēles noteikumi</h1>
-    <p>💡 Savāc brūnos kabanošus, lai iegūtu punktus.</p>
-    <p>🥦 Izvairies no zaļajiem brokoļiem, tie atņem dzīvības.</p>
-    <p>💔 Ja paliek 0 dzīvību — spēle beidzas!</p>
-    <button id="rulesNextBtn">Tālāk</button>
-  </section>
-
-  <section id="nameInputSection" style="display:none;">
-    <h1>👤 Ievadi savu vārdu</h1>
-    <input type="text" id="playerName" placeholder="Tavs vārds" />
-    <button id="confirmNameBtn">Apstiprināt</button>
-  </section>
-
-  <section id="gameScreen" style="display:none;">
-    <div class="hud">
-      <span>💯 Punkti: <span id="score">0</span></span>
-      <span>❤️ Dzīvības: <span id="lives">3</span></span>
+  <div class="container">
+    
+    <section id="rulesSection">
+      <h1>📜 Spēles noteikumi</h1>
+      <p>💡 Savāc brūnos kabanošus, lai iegūtu punktus.</p>
+      <p>🥦 Izvairies no zaļajiem brokoļiem, tie atņem dzīvības.</p>
+      <p>💔 Ja paliek 0 dzīvību — spēle beidzas!</p>
+      <a href="#" class="btn btn-red" id="rulesNextBtn">Tālāk</a>
+    </section>
+    
+    <section id="nameInputSection" style="display:none;">
+      <h1>👤 Ievadi savu vārdu</h1>
+      <input type="text" id="playerName" placeholder="Tavs vārds" />
+      <a href="#" class="btn btn-orange" id="confirmNameBtn">Apstiprināt</a>
+    </section>
+    
+    <section id="gameScreen" style="display:none;">
+      <div class="hud">
+        <span>💯 Punkti: <span id="score">0</span></span>
+        <span>❤️ Dzīvības: <span id="lives">3</span></span>
+      </div>
+      <div id="game">
+        <div id="player">
+          <img class="body" src="img/body.png">
+          <img class="face" src="img/face1.png">
+          <img class="handleft" src="img/lefthand.png">
+          <img class="handright" src="img/righthand.png">
+        </div>
+      </div>
+      <div class="button">
+        <a href="#" id="startGameBtn">Sākt spēli</a>
+      </div>
+    </section>
+    
+    <div id="gameOverModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close" id="closeModalBtn">&times;</span>
+        <h2>☠️ Spēle beigusies</h2>
+        <p><strong id="finalPlayerName"></strong>, tavi punkti: <strong id="finalScore"></strong></p>
+        <a href="#" class="btn btn-orange" id="restartGameBtn">Sākt no jauna</a>
+        <a href="#" class="btn btn-yellow" id="showLeaderboardBtn">🏆 Skatīt rezultātus</a>
+      </div>
     </div>
-    <div id="game">
-      <div id="player"></div>
-    </div>
-    <button id="startGameBtn">Sākt spēli</button>
-  </section>
+    
+    <div id="leaderboardModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close" id="closeLeaderboard">&times;</span>
+        <h2>🏆 Līderu saraksts</h2>
+        <ul id="leaderboardList"></ul>
+        <a href="#" class="btn btn-orange" id="restartFromLeaderboardBtn">Sākt no jauna</a>
+      </div>
+    </div>    
+      
+    </section>
 
-  <div id="gameOverModal" class="modal" style="display:none;">
-    <div class="modal-content">
-      <span class="close" id="closeModalBtn">&times;</span>
-      <h2>☠️ Spēle beigusies</h2>
-      <p><strong id="finalPlayerName"></strong>, tavi punkti: <strong id="finalScore"></strong></p>
-      <button id="restartGameBtn">Sākt no jauna</button>
-      <button id="showLeaderboardBtn">🏆 Skatīt rezultātus</button>
+    <div id="gameOverModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close" id="closeModalBtn">&times;</span>
+        <h2>☠️ Spēle beigusies</h2>
+        <p><strong id="finalPlayerName"></strong>, tavi punkti: <strong id="finalScore"></strong></p>
+        <button id="restartGameBtn">Sākt no jauna</button>
+        <button id="showLeaderboardBtn">🏆 Skatīt rezultātus</button>
+      </div>
     </div>
-  </div>
 
-<div id="leaderboardModal" class="modal" style="display:none;">
-  <div class="modal-content">
-    <span class="close" id="closeLeaderboard">&times;</span>
-    <h2>🏆 Līderu saraksts</h2>
-    <ul id="leaderboardList"></ul>
-    <button id="restartFromLeaderboardBtn">Sākt no jauna</button>
-  </div>
-</div>
+    <div id="leaderboardModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close" id="closeLeaderboard">&times;</span>
+        <h2>🏆 Līderu saraksts</h2>
+        <ul id="leaderboardList"></ul>
+        <button id="restartFromLeaderboardBtn">Sākt no jauna</button>
+      </div>
+    </div>
+
+  </div> <!-- конец .container -->
 
   <script src="script.js"></script>
 </body>
