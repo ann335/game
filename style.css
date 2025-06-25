@@ -1,16 +1,17 @@
 body {
   margin: 0;
   font-family: sans-serif;
-  background-image: url('img/korova_foooon.jpg');
-  background-size: cover;              /* Заполняет весь экран, сохраняя пропорции */
-  background-repeat: no-repeat;        /* Не повторяется */
-  background-position: center center;  /* Центрируется по экрану */
-  background-attachment: fixed;        /* Остаётся на месте при прокрутке */
-  min-height: 100vh;                   /* Гарантированная высота */
+  background-image: url("img/korova_foooon.jpg");
+  background-size: cover; /* Заполняет весь экран, сохраняя пропорции */
+  background-repeat: no-repeat; /* Не повторяется */
+  background-position: center center; /* Центрируется по экрану */
+  background-attachment: fixed; /* Остаётся на месте при прокрутке */
+  min-height: 100vh; /* Гарантированная высота */
   text-align: center;
 }
 
-h1, h2 {
+h1,
+h2 {
   color: #b92d2d;
   font-size: 2rem;
 }
@@ -57,7 +58,6 @@ button:hover {
 #player {
   width: 50px;
   height: 50px;
-  background-color: #b92d2d;
   position: absolute;
   bottom: 10px;
   left: 100%;
@@ -65,21 +65,73 @@ button:hover {
   transform: translateX(-50%);
   border-radius: 10px;
 }
+#player img {
+  position: relative;
+}
+
+#player .body {
+  position: relative;
+  z-index: 1;
+}
+
+#player .facep {
+  top: -15px;
+  left: 10px;
+  z-index: 5 !important;
+}
+
+#player .handleftp {
+  top: 10px;
+  left: -5px;
+  z-index: 3;
+}
+
+#player .handrightp {
+  top: 10px;
+  right: -5px;
+  z-index: 3;
+}
 
 .item {
   position: absolute;
   width: 30px;
   height: 30px;
   top: 0;
-  border-radius: 50%;
+  /* Удалите border-radius: 50%; чтобы убрать круглую форму */
+  border-radius: 0; /* Делаем квадратную форму */
+  overflow: hidden; /* Чтобы содержимое не выходило за границы */
 }
 
 .kabanos {
-  background-color: #7a3e2e;
+  display: flex; /* Используем flex для расположения картинок в ряд */
+  flex-direction: row; /* Картинки в строку */
+  justify-content: space-between; /* Равномерное распределение */
+  align-items: center; /* Выравнивание по центру */
+  width: 90px; /* Ширина для 3 картинок (30px x 3) */
+  height: 30px; /* Высота одной картинки */
+  background-color: transparent; /* Убираем фон */
+}
+
+.kabanos img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain; /* Сохраняем пропорции картинок */
 }
 
 .brokoli {
-  background-color: green;
+  display: flex; /* Используем flex для расположения картинок в ряд */
+  flex-direction: row; /* Картинки в строку */
+  justify-content: space-between; /* Равномерное распределение */
+  align-items: center; /* Выравнивание по центру */
+  width: 30px; /* Ширина для 3 картинок (30px x 3) */
+  height: 30px; /* Высота одной картинки */
+  background-color: transparent; /* Убираем фон */
+}
+
+.brokoli img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain; /* Сохраняем пропорции картинок */
 }
 
 .hud {
@@ -95,7 +147,7 @@ button:hover {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
@@ -116,12 +168,11 @@ button:hover {
   cursor: pointer;
 }
 
-
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: url('img/korova_foooon.jpg') no-repeat center center fixed;
+  background: url("images/korova_foooon.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -145,24 +196,23 @@ body {
   overflow: hidden;
   touch-action: none;
   background: #fff4eccc;
-  box-shadow:
-    inset #900c3f 0 0 0 4px,
-    inset #c70039 0 0 0 6px,
-    inset #ff5733 0 0 0 10px,
-    inset #ffc305 0 0 0 14px,
-    inset #fff4eccc 0 0 0 18px,
-    0 0 15px rgba(0, 0, 0, 0.4); /* внешняя тень */
+  box-shadow: inset #900c3f 0 0 0 4px, inset #c70039 0 0 0 6px,
+    inset #ff5733 0 0 0 10px, inset #ffc305 0 0 0 14px,
+    inset #fff4eccc 0 0 0 18px, 0 0 15px rgba(0, 0, 0, 0.4); /* внешняя тень */
   border-radius: 25px;
 }
 
 /* Адаптивная типографика и выравнивание */
-h1, h2, p {
+h1,
+h2,
+p {
   text-align: center;
   color: white;
   text-shadow: 1px 1px 3px #000;
 }
 
-input, button {
+input,
+button {
   font-size: 1rem;
   padding: 0.6em 1em;
   border: none;
@@ -277,7 +327,8 @@ input {
     padding: 15px;
   }
 
-  button, input {
+  button,
+  input {
     font-size: 1rem;
     width: 90%;
   }
