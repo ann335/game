@@ -1,4 +1,5 @@
 // --- UI elementi ---
+// Iegūst HTML elementus no dokumenta pēc to ID
 const rulesSection = document.getElementById("rulesSection");
 const rulesNextBtn = document.getElementById("rulesNextBtn");
 
@@ -24,32 +25,34 @@ const leaderboardModal = document.getElementById("leaderboardModal");
 const closeLeaderboardBtn = document.getElementById("closeLeaderboard");
 const leaderboardList = document.getElementById("leaderboardList");
 
-const restartFromLeaderboardBtn = document.getElementById(
-  "restartFromLeaderboardBtn"
-);
+const restartFromLeaderboardBtn = document.getElementById("restartFromLeaderboardBtn");
 
+// Poga, lai restartētu spēli no rezultātu tabulas
 restartFromLeaderboardBtn.onclick = () => {
-  leaderboardModal.style.display = "none"; // Скрыть таблицу рекордов
-  gameOverModal.style.display = "none"; // Скрыть окно конца игры (если открыто)
-  gameScreen.style.display = "block"; // Показать игровой экран
-  startGameBtn.style.display = "none"; // Спрятать кнопку "Sākt spēli" (мы сразу запускаем игру)
-  startGame(); // Запустить игру
+  leaderboardModal.style.display = "none"; // Paslēpj rezultātu tabulu
+  gameOverModal.style.display = "none"; // Paslēpj spēles beigu logu
+  gameScreen.style.display = "block"; // Parāda spēles ekrānu
+  startGameBtn.style.display = "none"; // Paslēpj "Sākt spēli" pogu
+  startGame(); // Uzsāk spēli
 };
 
 // --- Spēles mainīgie ---
+// Glabā spēlētāja vārdu, rezultātu, dzīvības un spēles stāvokli
 let playerName = "";
 let score = 0;
 let lives = 3;
 let gameInterval;
 let gameStarted = false;
-let itemsFallIntervals = [];
+let itemsFallIntervals = []; // Saraksts ar intervāliem, lai varētu tos apturēt
 
 // --- Pārejas starp sadaļām ---
+// Kad nospiež "Tālāk" no noteikumiem — parāda vārda ievades lauku
 rulesNextBtn.onclick = () => {
   rulesSection.style.display = "none";
   nameInputSection.style.display = "block";
 };
 
+// Kad apstiprina vārdu — pārbauda ievadi un pāriet uz spēles ekrānu
 confirmNameBtn.onclick = () => {
   const name = playerNameInput.value.trim();
   if (!name) {
@@ -62,65 +65,57 @@ confirmNameBtn.onclick = () => {
   startGameBtn.style.display = "inline-block";
 };
 
+// Kad nospiež "Sākt spēli", uzsāk spēli
 startGameBtn.onclick = () => {
   startGameBtn.style.display = "none";
   startGame();
 };
 
 // --- Spēles uzsākšana ---
+// Funkcija, kas inicializē spēli no jauna
 function startGame() {
   score = 0;
   lives = 3;
-  updateHUD();
-  clearItems();
-  player.style.left = (game.clientWidth - player.clientWidth) / 2 + "px";
+  updateHUD(); // Atjauno punktus un dzīvības
+  clearItems(); // Noņem iepriekšējos objektus, ja tādi bija
+  player.style.left = (game.clientWidth - player.clientWidth) / 2 + "px"; // Centrē spēlētāju
   if (gameInterval) clearInterval(gameInterval);
-  gameInterval = setInterval(dropItem, 1000);
+  gameInterval = setInterval(dropItem, 1000); // Ik pēc 1s krīt jauns objekts
   gameStarted = true;
 }
 
-// --- Atjaunot punktus un dzīvības ---
+// --- Atjauno punktu skaitu un dzīvības ekrānā ---
 function updateHUD() {
   scoreEl.textContent = score;
   livesEl.textContent = lives;
 }
 
-// --- Noņemt visus priekšmetus ---
+// --- Noņem visus priekšmetus no spēles laukuma ---
 function clearItems() {
-  itemsFallIntervals.forEach((i) => clearInterval(i));
+  itemsFallIntervals.forEach((i) => clearInterval(i)); // Aptur kustību
   itemsFallIntervals = [];
-  document.querySelectorAll(".item").forEach((i) => i.remove());
+  document.querySelectorAll(".item").forEach((i) => i.remove()); // Noņem HTML elementus
 }
 
-// --- Radīt krītošu objektu ---
+// --- Izveido jaunu krītošu objektu ---
 function dropItem() {
   const item = document.createElement("div");
-  const isKabanos = Math.random() < 0.7;
+  const isKabanos = Math.random() < 0.7; // 70% iespēja, ka tas būs kabanoss
 
   item.classList.add("item", isKabanos ? "kabanos" : "brokoli");
-  item.style.left = Math.random() * (game.clientWidth - 90) + "px"; // Учитываем ширину 90px
+  item.style.left = Math.random() * (game.clientWidth - 90) + "px";
 
+  // Ja objekts ir kabanoss — pievieno trīs dažādus attēlus
   if (isKabanos) {
-    // Создаем 3 картинки для kabanos
-    const img1 = document.createElement("img");
-    img1.src = "images/sos1.png";
-    img1.style.width = "30px";
-    img1.style.height = "30px";
-    item.appendChild(img1);
-
-    const img2 = document.createElement("img");
-    img2.src = "images/sos2.png";
-    img2.style.width = "30px";
-    img2.style.height = "30px";
-    item.appendChild(img2);
-
-    const img3 = document.createElement("img");
-    img3.src = "images/sos3.png";
-    img3.style.width = "30px";
-    img3.style.height = "30px";
-    item.appendChild(img3);
+    for (let i = 1; i <= 3; i++) {
+      const img = document.createElement("img");
+      img.src = `images/sos${i}.png`;
+      img.style.width = "30px";
+      img.style.height = "30px";
+      item.appendChild(img);
+    }
   } else {
-    // Для brokoli можно оставить как было или добавить картинку
+    // Brokoļu gadījumā izmanto sushi attēlu
     const sushina = document.createElement("img");
     sushina.src = "images/sushi.png";
     sushina.style.width = "30px";
@@ -130,11 +125,13 @@ function dropItem() {
 
   game.appendChild(item);
 
+  // Krītoša objekta animācija
   let top = 0;
   const fall = setInterval(() => {
     top += 5;
     item.style.top = top + "px";
 
+    // Kolīzijas pārbaude starp objektu un spēlētāju
     const itemRect = item.getBoundingClientRect();
     const playerRect = player.getBoundingClientRect();
 
@@ -171,32 +168,34 @@ function endGame() {
   gameStarted = false;
   clearInterval(gameInterval);
   clearItems();
-  saveScore(playerName, score);
+  saveScore(playerName, score); // Saglabā rezultātu localStorage
   finalPlayerNameSpan.textContent = playerName;
   finalScoreSpan.textContent = score;
   gameOverModal.style.display = "block";
 }
 
+// --- Spēles restartēšana ---
 restartGameBtn.onclick = () => {
   gameOverModal.style.display = "none";
   startGameBtn.style.display = "inline-block";
 };
 
+// --- Parādīt rezultātu tabulu ---
 showLeaderboardBtn.onclick = () => {
   gameOverModal.style.display = "none";
   showLeaderboardModal();
 };
 
-// --- Saglabāt rezultātus ---
+// --- Saglabā rezultātus localStorage un kārto top10 ---
 function saveScore(name, score) {
   let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
   leaderboard.push({ name, score });
-  leaderboard.sort((a, b) => b.score - a.score);
-  leaderboard = leaderboard.slice(0, 10);
+  leaderboard.sort((a, b) => b.score - a.score); // Kārto pēc punktiem dilstoši
+  leaderboard = leaderboard.slice(0, 10); // Glabā tikai top 10
   localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
 }
 
-// --- Rādīt rezultātu sarakstu ---
+// --- Parāda rezultātu tabulu modal logā ---
 function showLeaderboardModal() {
   leaderboardList.innerHTML = "";
   let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
@@ -212,11 +211,13 @@ function showLeaderboardModal() {
   leaderboardModal.style.display = "block";
 }
 
+// --- Aizver rezultātu tabulu ---
 closeLeaderboardBtn.onclick = () => {
   leaderboardModal.style.display = "none";
 };
 
 // --- Klaviatūras vadība ---
+// Reģistrē taustiņu nospiešanu
 let moveLeft = false;
 let moveRight = false;
 
@@ -232,7 +233,7 @@ document.addEventListener("keyup", (e) => {
   if (e.key === "ArrowRight") moveRight = false;
 });
 
-// --- Spēlētāja kustība ---
+// --- Spēlētāja kustība pa horizontāli (atkārtojas ar requestAnimationFrame) ---
 function movePlayer() {
   if (gameStarted) {
     const left = parseInt(player.style.left || "0");
@@ -243,11 +244,11 @@ function movePlayer() {
       player.style.left = left + 5 + "px";
     }
   }
-  requestAnimationFrame(movePlayer);
+  requestAnimationFrame(movePlayer); // Nepārtraukta spēlētāja kustība
 }
 movePlayer();
 
-// --- Pieskārienu vadība ---
+// --- Pieskārienu vadība mobilajām ierīcēm ---
 game.addEventListener("touchstart", (e) => {
   e.preventDefault();
   const touchX = e.touches[0].clientX;
@@ -260,6 +261,7 @@ game.addEventListener("touchmove", (e) => {
   movePlayerTo(touchX);
 });
 
+// Pārvieto spēlētāju pēc pieskāriena koordinātēm
 function movePlayerTo(clientX) {
   const gameRect = game.getBoundingClientRect();
   let newLeft = clientX - gameRect.left - player.clientWidth / 2;
