@@ -4,82 +4,61 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kabanos Game</title>
-  <!-- Pievienots ārējais stila fails -->
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css" /> 
 </head>
 <body>
 <div class="container">
 
-  <!-- Spēles noteikumu sadaļa (parādās pirmā) -->
   <section id="rulesSection">
     <h1>📜 Spēles noteikumi</h1>
     <p>🌭 Savāc cisiņus, lai iegūtu punktus.</p>
     <p>🍣 Izvairies no rolliem, tie atņem dzīvības.</p>
     <p>💔 Ja paliek 0 dzīvību — spēle beidzas!</p>
-    <!-- Poga, lai turpinātu uz nākamo ekrānu -->
-    <a href="#" class="btn btn-red" id="rulesNextBtn">Tālāk</a>
+    <a href="#" class="btn btn-red" id="rulesNextBtn">Tālāk</a> 
   </section>
-
-  <!-- Sadaļa, kur lietotājs ievada savu vārdu -->
+  
   <section id="nameInputSection" style="display:none;">
     <h1>👤 Ievadi savu vārdu</h1>
-    <!-- Tekstlauks vārda ievadei -->
     <input type="text" id="playerName" placeholder="Tavs vārds" />
-    <!-- Poga, lai apstiprinātu ievadīto vārdu -->
-    <a href="#" class="btn btn-orange" id="confirmNameBtn">Apstiprināt</a>
+    <a href="#" class="btn btn-orange" id="confirmNameBtn">Apstiprināt</a> 
   </section>
 
-  <!-- Galvenais spēles ekrāns -->
   <section id="gameScreen" style="display:none;">
-    <!-- Spēles informācija: punkti un dzīvības -->
-    <div class="hud">
+    <div class="hud"> 
       <span>💯 Punkti: <span id="score">0</span></span>
       <span>❤️ Dzīvības: <span id="lives">3</span></span>
     </div>
-    <!-- Spēles laukums -->
-    <div id="game">
-      <!-- Spēlētāja objekts ar attēlu -->
+    <div id="game"> 
       <div id="player" style="z-index: 4;">
-        <img class="body" src="images/pinkman.png" width="50px">
+        <img class="body" src="images/pinkman.png" width="50px"> 
       </div>
     </div>
-    <!-- Poga spēles sākšanai -->
     <div class="button">
-      <a href="#" id="startGameBtn">Sākt spēli</a>
+      <a href="#" id="startGameBtn">Sākt spēli</a> 
     </div>
   </section>
 
-  <!-- Spēles beigu logs (parādās, kad beidzas dzīvības) -->
   <div id="gameOverModal" class="modal" style="display:none;">
     <div class="modal-content">
-      <!-- Aizvēršanas poga (X) -->
-      <span class="close" id="closeModalBtn">&times;</span>
+      <span class="close" id="closeModalBtn">&times;</span> 
       <h2>☠️ Spēle beigusies</h2>
-      <!-- Spēlētāja vārds un iegūtie punkti -->
       <p><strong id="finalPlayerName"></strong>, tavi punkti: <strong id="finalScore"></strong></p>
-      <!-- Poga, lai sāktu spēli no jauna -->
-      <a href="#" class="btn btn-orange" id="restartGameBtn">Sākt no jauna</a>
-      <!-- Poga, lai skatītu līderu sarakstu -->
-      <a href="#" class="btn btn-yellow" id="showLeaderboardBtn">🏆 Skatīt rezultātus</a>
+      <a href="#" class="btn btn-orange" id="restartGameBtn">Sākt no jauna</a> 
+      <a href="#" class="btn btn-yellow" id="showLeaderboardBtn">🏆 Skatīt rezultātus</a> 
     </div>
   </div>
-
-  <!-- Līderu saraksta logs -->
+  
   <div id="leaderboardModal" class="modal" style="display:none;">
     <div class="modal-content">
-      <!-- Aizvēršanas poga (X) -->
-      <span class="close" id="closeLeaderboard">&times;</span>
+      <span class="close" id="closeLeaderboard">&times;</span> 
       <h2>🏆 Līderu saraksts</h2>
-      <!-- Šeit tiek parādīti spēlētāji ar augstāko rezultātu -->
-      <ul id="leaderboardList"></ul>
-      <!-- Poga, lai sāktu spēli no jauna no šī loga -->
-      <a href="#" class="btn btn-orange" id="restartFromLeaderboardBtn">Sākt no jauna</a>
+      <ul id="leaderboardList"></ul> 
+      <a href="#" class="btn btn-orange" id="restartFromLeaderboardBtn">Sākt no jauna</a> 
     </div>
   </div>
 
-</div> <!-- Beidzas galvenais konteiners -->
+</div> 
 
-<!-- Pievienots JavaScript fails, kas satur spēles loģiku -->
 <script src="script.js"></script>
 </body>
 </html>
