@@ -1,30 +1,26 @@
-/* Vispārējie iestatījumi ķermenim */
 body {
-  margin: 0; /* Noņem ārmalas */
-  font-family: sans-serif; /* Noklusējuma fontu ģimene */
-  background-image: url("img/korova_foooon.jpg"); /* Attēls fonā */
-  background-size: cover; /* Aizpilda visu ekrānu proporcionāli */
-  background-repeat: no-repeat; /* Neatkārto fona attēlu */
-  background-position: center center; /* Centrē fona attēlu */
-  background-attachment: fixed; /* Fons paliek vietā, kad rullē */
-  min-height: 100vh; /* Vismaz visa redzamā augstuma lielumā */
-  text-align: center; /* Centrē tekstu */
+  margin: 0;
+  font-family: sans-serif;
+  background-image: url("img/korova_foooon.jpg");
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-position: center center; 
+  background-attachment: fixed; 
+  min-height: 100vh; 
+  text-align: center;
 }
 
-/* Virsrakstu stils */
 h1,
 h2 {
-  color: #b92d2d; /* Sarkans tonis virsrakstiem */
-  font-size: 2rem; /* Izmērs */
+  color: #b92d2d;
+  font-size: 2rem;
 }
 
-/* Sekcijas iekšējie attālumi */
 .section {
   margin-top: 50px;
   padding: 20px;
 }
 
-/* Teksta ievades lauks (piemēram, spēlētāja vārds) */
 input[type="text"] {
   padding: 10px;
   font-size: 16px;
@@ -33,61 +29,55 @@ input[type="text"] {
   margin-bottom: 10px;
 }
 
-/* Pogas pamata stils */
 button {
   padding: 10px 20px;
-  background-color: #b92d2d; /* Sarkanā pamatkrāsa */
+  background-color: #b92d2d;
   color: white;
   border: none;
-  border-radius: 8px; /* Noapaļoti stūri */
+  border-radius: 8px;
   font-size: 16px;
-  cursor: pointer; /* Rādītājs mainās uz "pointer" */
+  cursor: pointer;
 }
 
-/* Kad uzbrauc ar peli uz pogas */
 button:hover {
-  background-color: #a02222; /* Tumšāka versija */
+  background-color: #a02222;
 }
 
-/* Spēles laukums */
 #game {
   position: relative;
   margin: 20px auto;
-  background: #fff4ec; /* Gaišs fons */
-  border: 3px solid #b92d2d; /* Sarkana apmale */
+  background: #fff4ec;
+  border: 3px solid #b92d2d;
   width: 90%;
   max-width: 600px;
   height: 400px;
-  overflow: hidden; /* Neļauj iziet ārpus lauka */
-  touch-action: none; /* Android/iOS pieskāriena optimizācija */
+  overflow: hidden;
+  touch-action: none;
 }
 
-/* Spēlētāja laukums */
 #player {
   width: 50px;
   height: 50px;
   position: absolute;
-  bottom: 10px; /* Atrodas apakšā */
+  bottom: 10px;
   left: 100%;
   right: 100%;
-  transform: translateX(-50%); /* Centrē horizontāli */
+  transform: translateX(-50%);
   border-radius: 10px;
 }
-
-/* Attēli spēlētājā (piemēram, rokas, seja utt.) */
 #player img {
   position: relative;
 }
 
 #player .body {
   position: relative;
-  z-index: 1; /* Galvenais slānis */
+  z-index: 1;
 }
 
 #player .facep {
   top: -15px;
   left: 10px;
-  z-index: 5 !important; /* Seja virs visiem */
+  z-index: 5 !important;
 }
 
 #player .handleftp {
@@ -102,23 +92,22 @@ button:hover {
   z-index: 3;
 }
 
-/* Krītošie objekti (pārtika) */
 .item {
   position: absolute;
   width: 30px;
   height: 30px;
   top: 0;
-  border-radius: 0; /* Kvadrātveida forma */
-  overflow: hidden; /* Slēpj ārpus malas */
+  
+  border-radius: 0; 
+  overflow: hidden;
 }
 
-/* Kabanosi – 3 attēli vienā objektā */
 .kabanos {
-  display: flex;
-  flex-direction: row;
+  display: flex; 
+  flex-direction: row; 
   justify-content: space-between;
-  align-items: center;
-  width: 90px;
+  align-items: center; 
+  width: 90px; 
   height: 30px;
   background-color: transparent;
 }
@@ -126,33 +115,30 @@ button:hover {
 .kabanos img {
   width: 30px;
   height: 30px;
-  object-fit: contain; /* Nepārspiež proporcijas */
+  object-fit: contain; 
 }
 
-/* Brokoļi – viens attēls */
 .brokoli {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-  background-color: transparent;
+  flex-direction: row; 
+  justify-content: space-between; 
+  align-items: center; 
+  width: 30px; 
+  height: 30px; 
+  background-color: transparent; 
 }
 
 .brokoli img {
   width: 30px;
   height: 30px;
-  object-fit: contain;
+  object-fit: contain; 
 }
 
-/* Informācijas panelis augšā (punkti, laiks u.c.) */
 .hud {
   margin-top: 10px;
   font-size: 18px;
 }
 
-/* Modalais logs (piemēram, spēles beigu ekrāns) */
 .modal {
   display: none;
   position: fixed;
@@ -161,10 +147,9 @@ button:hover {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Caurspīdīgs melns fons */
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Saturs modālajā logā */
 .modal-content {
   background: white;
   margin: 15% auto;
@@ -175,7 +160,6 @@ button:hover {
   text-align: center;
 }
 
-/* Aizvērt pogu (X) logs */
 .close {
   position: absolute;
   top: 15px;
@@ -184,27 +168,148 @@ button:hover {
   cursor: pointer;
 }
 
-/* Spēles lauks ar krāsainām iekšējām apmalēm */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: url("images/korova_foooon.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
 #game {
-  box-shadow: 
-    inset #900c3f 0 0 0 4px,
-    inset #c70039 0 0 0 6px,
-    inset #ff5733 0 0 0 10px,
-    inset #ffc305 0 0 0 14px,
-    inset #fff4eccc 0 0 0 18px,
-    0 0 15px rgba(0, 0, 0, 0.4); /* Ārējā ēna */
+  position: relative;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  touch-action: none;
+  background: #fff4eccc;
+  box-shadow: inset #900c3f 0 0 0 4px, inset #c70039 0 0 0 6px,
+    inset #ff5733 0 0 0 10px, inset #ffc305 0 0 0 14px,
+    inset #fff4eccc 0 0 0 18px, 0 0 15px rgba(0, 0, 0, 0.4); 
   border-radius: 25px;
 }
 
-/* Responsīvs teksts */
 h1,
 h2,
 p {
+  text-align: center;
   color: white;
   text-shadow: 1px 1px 3px #000;
 }
 
-/* Tekstu un pogu pielāgošana mazākiem ekrāniem */
+input,
+button {
+  font-size: 1rem;
+  padding: 0.6em 1em;
+  border: none;
+  border-radius: 10px;
+  margin: 0.5em auto;
+  display: block;
+  max-width: 90%;
+  box-shadow: 2px 2px 5px #333;
+}
+
+button {
+  background-color: #ff9900;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #e68200;
+}
+
+input {
+  padding: 0.6em;
+  width: 80%;
+  max-width: 300px;
+}
+
+.hud {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 0 1em;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content h2 {
+  color: #333;
+}
+
+.modal-content button {
+  background-color: #27ae60;
+  margin-top: 1em;
+}
+
+.modal-content button:hover {
+  background-color: #219150;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 2rem;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #333;
+}
+
+#leaderboardList {
+  list-style: none;
+  padding: 0;
+  margin: 1em 0;
+  text-align: left;
+  color: #333;
+}
+
+#leaderboardList li {
+  margin-bottom: 0.5em;
+}
+
 @media (max-width: 600px) {
   .hud {
     flex-direction: column;
@@ -227,33 +332,73 @@ p {
   }
 }
 
-/* Stilīgas HTML pogas (poga kā saite) */
+body {
+  text-align: center;
+  background-color: #ffcc8e;
+}
+
+.button {
+  position: relative;
+  display: inline-block;
+  margin: 20px auto;
+}
+
 .button a {
   color: white;
   font-family: Helvetica, sans-serif;
   font-weight: bold;
   font-size: 24px;
-  background-color: #c70039;
+  text-align: center;
+  text-decoration: none;
+  background-color: #c70039; 
+  display: block;
+  position: relative;
+  padding: 14px 32px;
+
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   text-shadow: 0px 1px 0px #000;
+
+  -webkit-box-shadow: inset 0 1px 0 #ffc305, 0 8px 0 #900c3f;
+  -moz-box-shadow: inset 0 1px 0 #ffc305, 0 8px 0 #900c3f;
   box-shadow: inset 0 1px 0 #ffc305, 0 8px 0 #900c3f;
+
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
   border-radius: 8px;
 }
 
-/* Efekts, kad poga tiek nospiesta */
 .button a:active {
   top: 8px;
-  background-color: #ff5733;
+  background-color: #ff5733; 
+
+  -webkit-box-shadow: inset 0 1px 0 #ffc305, inset 0 -3px 0 #900c3f;
+  -moz-box-shadow: inset 0 1px 0 #ffc305, inset 0 -3px 0 #900c3f;
   box-shadow: inset 0 1px 0 #ffc305, inset 0 -3px 0 #900c3f;
 }
 
-/* Gluda poga ar ēnu un hover efektu */
+.button::after {
+  content: "";
+  display: none; 
+}
+
 .btn {
+  text-transform: uppercase;
+  text-decoration: none;
   padding: 15px 40px;
+  display: inline-block;
   border-radius: 100px;
+  transition: all 0.2s;
+  position: relative;
   font-weight: bold;
   font-size: 1rem;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  border: none;
   cursor: pointer;
+}
+
+.btn:link,
+.btn:visited {
+  color: #fff;
 }
 
 .btn:hover {
@@ -264,4 +409,86 @@ p {
 .btn:active {
   transform: translateY(-1px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+
+.btn-red {
+  background-color: #c70039;
+}
+
+.btn-red::after {
+  background-color: #c70039;
+}
+
+.btn-orange {
+  background-color: #ff5733;
+}
+
+.btn-orange::after {
+  background-color: #ff5733;
+}
+
+.btn-yellow {
+  background-color: #ffc305;
+  color: #333;
+}
+
+.btn-yellow::after {
+  background-color: #ffc305;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+#gameOverModal .btn {
+  font-size: 1rem;
+  padding: 12px 30px;
+  width: 230px;
+  text-align: center;
+  margin-top: 10px;
+  box-sizing: border-box;
+  user-select: none;
+  cursor: pointer;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+#restartBtn {
+  background-color: #ff5733;
+}
+#restartBtn:hover {
+  background-color: #e74c3c;
+}
+
+#viewPointsBtn {
+  background-color: #ffc305;
+  color: black;
+}
+#viewPointsBtn:hover {
+  background-color: #e0ac00;
+}
+
+#leaderboardModal h2 {
+  font-size: 1.3rem;
+  white-space: normal;
+  word-wrap: break-word;
+  text-align: center;
+  line-height: 1.3;
+  margin-bottom: 15px;
 }
